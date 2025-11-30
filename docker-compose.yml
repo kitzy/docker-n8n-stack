@@ -22,6 +22,7 @@ x-shared: &shared
     - QUEUE_BULL_REDIS_HOST=redis
     - QUEUE_HEALTH_CHECK_ACTIVE=true
     - N8N_ENCRYPTION_KEY=${ENCRYPTION_KEY}
+    - WEBHOOK_URL=${WEBHOOK_URL}
   links:
     - postgres
     - redis
@@ -72,11 +73,3 @@ services:
     networks:
       - default
       - proxy
-
-  n8n-worker:
-    <<: *shared
-    command: worker
-    depends_on:
-      - n8n
-    networks:
-      - default
